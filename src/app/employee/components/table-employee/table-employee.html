@@ -29,7 +29,9 @@
             >{{ employee.status | employeeStatus }}</span
           >
         </td>
-        <td>Actions</td>
+        <td>
+          <app-table-actions [employee]="employee" />
+        </td>
       </tr>
     }
   </tbody>

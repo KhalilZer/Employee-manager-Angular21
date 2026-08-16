@@ -4,6 +4,7 @@ import { EmployeeStatusEnum } from '../../enums/employee-status.enum';
 import { EmployeeStatusPipe } from '../../pipes/employee-status-pipe';
 import { EmployeeService } from '../../employee.service';
 import { maxTodayvalidator } from '../../validators/max-today.validator';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee-create',
@@ -36,7 +37,9 @@ export class EmployeeCreate {
     }),
   });
   employeeStatuses = Object.values(EmployeeStatusEnum).filter((value) => typeof value === 'number');
+
   employeeService = inject(EmployeeService);
+  toastr = inject(ToastrService);
 
   onSubmit() {
     this.form.markAllAsTouched();
@@ -44,12 +47,13 @@ export class EmployeeCreate {
       console.log(this.form.markAllAsDirty());
       return;
     }
-
     this.employeeService.createEmployee(this.form.getRawValue()).subscribe((response) => {
       if (!response.success) {
-        //show errors.
+        this.toastr.error(response.message, 'Cannot Create Employee');
         return;
       }
+
+      this.toastr.success(response.message, 'Success');
 
       console.log(response);
     });
