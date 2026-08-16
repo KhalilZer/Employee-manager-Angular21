@@ -17,4 +17,8 @@ export class EmployeeService {
   createEmployee(data: Employee) {
     return this.httpClient.post<ServerResponse<Employee>>(`${this.baseUrl}/employees`, data);
   }
+
+  getEmployee(id: number) {
+    return this.httpClient.get<ServerResponse<Employee>>(`${this.baseUrl}/employees/${id}`);
+  }
 }

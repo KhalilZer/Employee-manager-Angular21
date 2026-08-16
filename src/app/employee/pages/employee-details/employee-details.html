@@ -1,1 +1,27 @@
-<p>employee-details works!</p>
+<div>
+  @if (employee(); as employee) {
+    <div>
+      <div>
+        <img [src]="employee.photo" [alt]="employee.full_name" class="w-40 h-40 rounded-full" />
+      </div>
+      <p>Full name</p>
+      <p>{{ employee.full_name }}</p>
+    </div>
+    <div>
+      <p>Email</p>
+      <p>{{ employee.email }}</p>
+    </div>
+    <div>
+      <p>Salary</p>
+      <p>{{ employee.salary | currency: 'EUR' }}</p>
+    </div>
+    <div>
+      <p>Hire Date</p>
+      <p>{{ employee.hire_date | date: 'dd/mm/yyyy' }}</p>
+    </div>
+    <div>
+      <p>Status</p>
+      <p>{{ employee.status | employeeStatus }}</p>
+    </div>
+  }
+</div>
