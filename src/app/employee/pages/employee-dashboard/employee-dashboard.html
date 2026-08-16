@@ -1,5 +1,7 @@
 <div>
   //Search Bar (withFullName, withEmail , withStatus) //Table (...,action buttons)
 
-  <app-table-employee />
+  @if (employeeList$ | async; as response) {
+    <app-table-employee [EmployeesList]="response.data" />
+  }
 </div>

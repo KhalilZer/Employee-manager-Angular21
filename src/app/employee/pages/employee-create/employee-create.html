@@ -1,1 +1,88 @@
-<p>employee-create works!</p>
+<div>
+  <h1>Create form</h1>
+
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <div class="">
+      <label for="full_name">Full Name</label>
+      <input
+        type="text"
+        name="full_name"
+        id="full_name"
+        formControlName="full_name"
+        class="border"
+      />
+      <div>
+        @if (form.controls.full_name.hasError('minlength')) {
+          <p>Full name must contain at least 5 characters.</p>
+        }
+        @if (form.controls.full_name.hasError('required')) {
+          <p>Full name is required.</p>
+        }
+      </div>
+    </div>
+
+    <div class="">
+      <label for="full_name">email</label>
+      <input type="email" name="email" id="email" formControlName="email" class="border" />
+      <div>
+        @if (form.controls.email.hasError('email')) {
+          <p>Please enter a valid email address.</p>
+        }
+        @if (form.controls.email.hasError('required')) {
+          <p>Email is required.</p>
+        }
+      </div>
+    </div>
+    <div class="">
+      <label for="full_name">Salary</label>
+      <input type="number" name="salary" id="salary" formControlName="salary" class="border" />
+      <div>
+        @if (form.controls.salary.hasError('min')) {
+          <p>Salary must be at least 800.</p>
+        }
+        @if (form.controls.salary.hasError('required')) {
+          <p>Salary is required.</p>
+        }
+      </div>
+    </div>
+    <div class="">
+      <label for="hire_date">Hire Date</label>
+      <input
+        type="date"
+        name="hire_date"
+        id="hire_date"
+        formControlName="hire_date"
+        class="border"
+      />
+      <div>
+        @if (form.controls.hire_date.hasError('maxToday')) {
+          <p>Hire date cannot be in the future.</p>
+        }
+        @if (form.controls.hire_date.hasError('required')) {
+          <p>Hire date is required.</p>
+        }
+      </div>
+    </div>
+    <div class="">
+      <label for="status"></label>
+      <select name="status" id="status" formControlName="status">
+        @for (status of employeeStatuses; track status) {
+          <option [value]="status">{{ status | employeeStatus }}</option>
+        }
+      </select>
+    </div>
+    <div class="">
+      <label for="full_name">Photo</label>
+      <input type="photo" name="photo" id="photo" formControlName="photo" class="border" />
+      <div>
+        @if (form.controls.photo.hasError('pattern')) {
+          <p>Please enter a valid URL.</p>
+        }
+        @if (form.controls.photo.hasError('required')) {
+          <p>Photo URL is required.</p>
+        }
+      </div>
+    </div>
+    <button type="submit">Create</button>
+  </form>
+</div>

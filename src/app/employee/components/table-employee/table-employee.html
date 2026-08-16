@@ -6,7 +6,31 @@
       <th>Salary</th>
       <th>Hire Date</th>
       <th>Status</th>
+      <th>Actions</th>
     </tr>
   </thead>
-  <tbody></tbody>
+  <tbody>
+    @for (employee of EmployeesList; track employee.id) {
+      <tr>
+        <td class="flex items-center">
+          <img [src]="employee.photo" class="rounded-full h-20 w-20" />
+          <span>{{ employee.full_name }}</span>
+        </td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.salary | currency: 'EUR' }}</td>
+        <td>{{ employee.hire_date | date: 'dd/mm/yyyy' }}</td>
+        <td>
+          <span
+            [class]="{
+              'bg-green-600': employee.status === EmployeeStatus.ACTIVE,
+              'bg-orange-500': employee.status === EmployeeStatus.HOLIDAYS,
+              'bg-red-600': employee.status === EmployeeStatus.OFF,
+            }"
+            >{{ employee.status | employeeStatus }}</span
+          >
+        </td>
+        <td>Actions</td>
+      </tr>
+    }
+  </tbody>
 </table>
