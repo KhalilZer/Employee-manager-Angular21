@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Employee } from '../../employee.model';
 import { CurrencyPipe, DatePipe, NgClass } from '@angular/common';
 import { EmployeeStatusPipe } from '../../pipes/employee-status-pipe';
@@ -13,5 +13,11 @@ import { TableActions } from '../table-actions/table-actions';
 })
 export class TableEmployee {
   @Input({ required: true }) EmployeesList!: Employee[];
+  @Output() refreshEmployee = new EventEmitter<void>();
+
   EmployeeStatus = EmployeeStatusEnum;
+
+  refreshTable() {
+    this.refreshEmployee.emit();
+  }
 }

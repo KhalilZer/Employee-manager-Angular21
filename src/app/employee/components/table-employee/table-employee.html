@@ -30,7 +30,7 @@
           >
         </td>
         <td>
-          <app-table-actions [employee]="employee" />
+          <app-table-actions [employee]="employee" (refreshTable)="refreshTable()" />
         </td>
       </tr>
     }

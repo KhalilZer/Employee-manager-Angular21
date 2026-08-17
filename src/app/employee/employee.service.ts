@@ -14,11 +14,21 @@ export class EmployeeService {
     return this.httpClient.get<ServerResponse<Employee[]>>(`${this.baseUrl}/employees`);
   }
 
-  createEmployee(data: Employee) {
-    return this.httpClient.post<ServerResponse<Employee>>(`${this.baseUrl}/employees`, data);
+  createEmployee(payload: Employee) {
+    return this.httpClient.post<ServerResponse<Employee>>(`${this.baseUrl}/employees`, payload);
   }
 
-  getEmployee(id: number) {
-    return this.httpClient.get<ServerResponse<Employee>>(`${this.baseUrl}/employees/${id}`);
+  getEmployee(employeeId: number) {
+    return this.httpClient.get<ServerResponse<Employee>>(`${this.baseUrl}/employees/${employeeId}`);
+  }
+
+  updateEmployee(employeeId: number, payload: Employee) {
+    return this.httpClient.put<ServerResponse<boolean>>(
+      `${this.baseUrl}/employees/${employeeId}`,
+      payload,
+    );
+  }
+  deleteEmployee(employeeId: number) {
+    return this.httpClient.delete<ServerResponse<null>>(`${this.baseUrl}/employees/${employeeId}`);
   }
 }

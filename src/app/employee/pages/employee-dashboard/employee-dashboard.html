@@ -2,6 +2,6 @@
   //Search Bar (withFullName, withEmail , withStatus) //Table (...,action buttons)
 
   @if (employeeList$ | async; as response) {
-    <app-table-employee [EmployeesList]="response.data" />
+    <app-table-employee [EmployeesList]="response.data" (refreshEmployee)="refreshEmployees()" />
   }
 </div>

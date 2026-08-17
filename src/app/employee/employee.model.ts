@@ -5,7 +5,7 @@ export interface Employee {
   salary: number;
   hire_date: Date;
   status: number;
-  photo: string | null;
+  photo: string;
   created_at?: string;
   updated_at?: string;
   deleted_at?: string | null;

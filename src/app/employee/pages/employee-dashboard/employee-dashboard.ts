@@ -13,4 +13,7 @@ export class EmployeeDashboard {
   employeeService = inject(EmployeeService);
 
   employeeList$ = this.employeeService.getEmployees();
+  refreshEmployees() {
+    this.employeeList$ = this.employeeService.getEmployees();
+  }
 }
